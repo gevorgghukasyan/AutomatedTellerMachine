@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AutomatedTellerMachine
 {
-    class WrongPasswordException : Exception
-    {
-        public WrongPasswordException() : base("The card blocked")
-        {
+	public class WrongPasswordException : Exception
+	{
+		public WrongPasswordException() : base("The card blocked")
+		{
 
-        }
-    }
+		}
+	}
 }
