@@ -30,10 +30,19 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATM));
 			this.groupBoxDesktop = new System.Windows.Forms.GroupBox();
+			this.btnAuthFaceId = new System.Windows.Forms.Button();
+			this.lblAuth = new System.Windows.Forms.Label();
 			this.lblTransfer = new System.Windows.Forms.Label();
 			this.lblErrorText = new System.Windows.Forms.Label();
+			this.lblOr = new System.Windows.Forms.Label();
 			this.lblTransaction = new System.Windows.Forms.Label();
 			this.lblCashIn = new System.Windows.Forms.Label();
+			this.groupBoxTransaction = new System.Windows.Forms.GroupBox();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.cb1month = new System.Windows.Forms.CheckBox();
+			this.cb1week = new System.Windows.Forms.CheckBox();
+			this.picCapture = new System.Windows.Forms.PictureBox();
+			this.cb1day = new System.Windows.Forms.CheckBox();
 			this.lblBalance = new System.Windows.Forms.Label();
 			this.lblCardBlock = new System.Windows.Forms.Label();
 			this.lblChangePin = new System.Windows.Forms.Label();
@@ -41,11 +50,6 @@
 			this.lblCashOut = new System.Windows.Forms.Label();
 			this.lblText = new System.Windows.Forms.Label();
 			this.TxtInputData = new System.Windows.Forms.TextBox();
-			this.groupBoxTransaction = new System.Windows.Forms.GroupBox();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.cb1month = new System.Windows.Forms.CheckBox();
-			this.cb1week = new System.Windows.Forms.CheckBox();
-			this.cb1day = new System.Windows.Forms.CheckBox();
 			this.BtnEnter = new System.Windows.Forms.Button();
 			this.BtnNum00 = new System.Windows.Forms.Button();
 			this.BtnPoint = new System.Windows.Forms.Button();
@@ -69,10 +73,6 @@
 			this.BtnBalance = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.lblOr = new System.Windows.Forms.Label();
-			this.lblAuth = new System.Windows.Forms.Label();
-			this.btnAuthFaceId = new System.Windows.Forms.Button();
-			this.picCapture = new System.Windows.Forms.PictureBox();
 			this.picDetected = new System.Windows.Forms.PictureBox();
 			this.groupBoxDesktop.SuspendLayout();
 			this.groupBoxTransaction.SuspendLayout();
@@ -84,14 +84,16 @@
 			// groupBoxDesktop
 			// 
 			this.groupBoxDesktop.BackColor = System.Drawing.Color.Navy;
+			this.groupBoxDesktop.Controls.Add(this.picDetected);
 			this.groupBoxDesktop.Controls.Add(this.btnAuthFaceId);
 			this.groupBoxDesktop.Controls.Add(this.lblAuth);
 			this.groupBoxDesktop.Controls.Add(this.lblTransfer);
+			this.groupBoxDesktop.Controls.Add(this.picCapture);
 			this.groupBoxDesktop.Controls.Add(this.lblErrorText);
+			this.groupBoxDesktop.Controls.Add(this.groupBoxTransaction);
 			this.groupBoxDesktop.Controls.Add(this.lblOr);
 			this.groupBoxDesktop.Controls.Add(this.lblTransaction);
 			this.groupBoxDesktop.Controls.Add(this.lblCashIn);
-			this.groupBoxDesktop.Controls.Add(this.groupBoxTransaction);
 			this.groupBoxDesktop.Controls.Add(this.lblBalance);
 			this.groupBoxDesktop.Controls.Add(this.lblCardBlock);
 			this.groupBoxDesktop.Controls.Add(this.lblChangePin);
@@ -104,6 +106,29 @@
 			this.groupBoxDesktop.Size = new System.Drawing.Size(361, 295);
 			this.groupBoxDesktop.TabIndex = 1;
 			this.groupBoxDesktop.TabStop = false;
+			// 
+			// btnAuthFaceId
+			// 
+			this.btnAuthFaceId.BackColor = System.Drawing.Color.SlateGray;
+			this.btnAuthFaceId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAuthFaceId.Image = ((System.Drawing.Image)(resources.GetObject("btnAuthFaceId.Image")));
+			this.btnAuthFaceId.Location = new System.Drawing.Point(105, 158);
+			this.btnAuthFaceId.Name = "btnAuthFaceId";
+			this.btnAuthFaceId.Size = new System.Drawing.Size(143, 135);
+			this.btnAuthFaceId.TabIndex = 28;
+			this.btnAuthFaceId.UseVisualStyleBackColor = false;
+			this.btnAuthFaceId.Click += new System.EventHandler(this.btnAuthFaceId_Click);
+			// 
+			// lblAuth
+			// 
+			this.lblAuth.AutoSize = true;
+			this.lblAuth.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblAuth.Location = new System.Drawing.Point(100, 16);
+			this.lblAuth.Name = "lblAuth";
+			this.lblAuth.Size = new System.Drawing.Size(183, 26);
+			this.lblAuth.TabIndex = 26;
+			this.lblAuth.Text = "Authenticate via";
+			this.lblAuth.Click += new System.EventHandler(this.lblAuthFace_Click);
 			// 
 			// lblTransfer
 			// 
@@ -125,6 +150,17 @@
 			this.lblErrorText.Size = new System.Drawing.Size(0, 20);
 			this.lblErrorText.TabIndex = 23;
 			// 
+			// lblOr
+			// 
+			this.lblOr.AutoSize = true;
+			this.lblOr.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblOr.Location = new System.Drawing.Point(153, 129);
+			this.lblOr.Name = "lblOr";
+			this.lblOr.Size = new System.Drawing.Size(38, 26);
+			this.lblOr.TabIndex = 25;
+			this.lblOr.Text = "Or";
+			this.lblOr.Click += new System.EventHandler(this.lblOr_Click);
+			// 
 			// lblTransaction
 			// 
 			this.lblTransaction.AutoSize = true;
@@ -145,6 +181,78 @@
 			this.lblCashIn.Size = new System.Drawing.Size(68, 24);
 			this.lblCashIn.TabIndex = 27;
 			this.lblCashIn.Text = "CashIn";
+			// 
+			// groupBoxTransaction
+			// 
+			this.groupBoxTransaction.BackColor = System.Drawing.Color.Navy;
+			this.groupBoxTransaction.Controls.Add(this.dataGridView1);
+			this.groupBoxTransaction.Controls.Add(this.cb1month);
+			this.groupBoxTransaction.Controls.Add(this.cb1week);
+			this.groupBoxTransaction.Controls.Add(this.cb1day);
+			this.groupBoxTransaction.Location = new System.Drawing.Point(0, 0);
+			this.groupBoxTransaction.Name = "groupBoxTransaction";
+			this.groupBoxTransaction.Size = new System.Drawing.Size(361, 295);
+			this.groupBoxTransaction.TabIndex = 1;
+			this.groupBoxTransaction.TabStop = false;
+			this.groupBoxTransaction.Visible = false;
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(0, 49);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.ReadOnly = true;
+			this.dataGridView1.Size = new System.Drawing.Size(371, 246);
+			this.dataGridView1.TabIndex = 24;
+			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+			// 
+			// cb1month
+			// 
+			this.cb1month.AutoSize = true;
+			this.cb1month.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.cb1month.Location = new System.Drawing.Point(229, 19);
+			this.cb1month.Name = "cb1month";
+			this.cb1month.Size = new System.Drawing.Size(99, 17);
+			this.cb1month.TabIndex = 23;
+			this.cb1month.Text = "Last one month";
+			this.cb1month.UseVisualStyleBackColor = true;
+			this.cb1month.CheckedChanged += new System.EventHandler(this.cb1month_CheckedChanged);
+			// 
+			// cb1week
+			// 
+			this.cb1week.AutoSize = true;
+			this.cb1week.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.cb1week.Location = new System.Drawing.Point(111, 19);
+			this.cb1week.Name = "cb1week";
+			this.cb1week.Size = new System.Drawing.Size(96, 17);
+			this.cb1week.TabIndex = 23;
+			this.cb1week.Text = "Last one week";
+			this.cb1week.UseVisualStyleBackColor = true;
+			this.cb1week.CheckedChanged += new System.EventHandler(this.cb1week_CheckedChanged);
+			// 
+			// picCapture
+			// 
+			this.picCapture.Enabled = false;
+			this.picCapture.Location = new System.Drawing.Point(191, 0);
+			this.picCapture.Name = "picCapture";
+			this.picCapture.Size = new System.Drawing.Size(170, 295);
+			this.picCapture.TabIndex = 29;
+			this.picCapture.TabStop = false;
+			this.picCapture.Visible = false;
+			// 
+			// cb1day
+			// 
+			this.cb1day.AutoSize = true;
+			this.cb1day.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.cb1day.Location = new System.Drawing.Point(6, 19);
+			this.cb1day.Name = "cb1day";
+			this.cb1day.Size = new System.Drawing.Size(87, 17);
+			this.cb1day.TabIndex = 23;
+			this.cb1day.Text = "Last one day";
+			this.cb1day.UseVisualStyleBackColor = true;
+			this.cb1day.CheckedChanged += new System.EventHandler(this.cb1day_CheckedChanged);
 			// 
 			// lblBalance
 			// 
@@ -217,69 +325,6 @@
 			this.TxtInputData.TabIndex = 23;
 			this.TxtInputData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.TxtInputData.TextChanged += new System.EventHandler(this.TxtInputData_TextChanged);
-			// 
-			// groupBoxTransaction
-			// 
-			this.groupBoxTransaction.BackColor = System.Drawing.Color.Navy;
-			this.groupBoxTransaction.Controls.Add(this.dataGridView1);
-			this.groupBoxTransaction.Controls.Add(this.cb1month);
-			this.groupBoxTransaction.Controls.Add(this.cb1week);
-			this.groupBoxTransaction.Controls.Add(this.picCapture);
-			this.groupBoxTransaction.Controls.Add(this.cb1day);
-			this.groupBoxTransaction.Location = new System.Drawing.Point(6, 0);
-			this.groupBoxTransaction.Name = "groupBoxTransaction";
-			this.groupBoxTransaction.Size = new System.Drawing.Size(361, 295);
-			this.groupBoxTransaction.TabIndex = 1;
-			this.groupBoxTransaction.TabStop = false;
-			this.groupBoxTransaction.Visible = false;
-			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(0, 49);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.ReadOnly = true;
-			this.dataGridView1.Size = new System.Drawing.Size(371, 246);
-			this.dataGridView1.TabIndex = 24;
-			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-			// 
-			// cb1month
-			// 
-			this.cb1month.AutoSize = true;
-			this.cb1month.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.cb1month.Location = new System.Drawing.Point(229, 19);
-			this.cb1month.Name = "cb1month";
-			this.cb1month.Size = new System.Drawing.Size(99, 17);
-			this.cb1month.TabIndex = 23;
-			this.cb1month.Text = "Last one month";
-			this.cb1month.UseVisualStyleBackColor = true;
-			this.cb1month.CheckedChanged += new System.EventHandler(this.cb1month_CheckedChanged);
-			// 
-			// cb1week
-			// 
-			this.cb1week.AutoSize = true;
-			this.cb1week.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.cb1week.Location = new System.Drawing.Point(111, 19);
-			this.cb1week.Name = "cb1week";
-			this.cb1week.Size = new System.Drawing.Size(96, 17);
-			this.cb1week.TabIndex = 23;
-			this.cb1week.Text = "Last one week";
-			this.cb1week.UseVisualStyleBackColor = true;
-			this.cb1week.CheckedChanged += new System.EventHandler(this.cb1week_CheckedChanged);
-			// 
-			// cb1day
-			// 
-			this.cb1day.AutoSize = true;
-			this.cb1day.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.cb1day.Location = new System.Drawing.Point(6, 19);
-			this.cb1day.Name = "cb1day";
-			this.cb1day.Size = new System.Drawing.Size(87, 17);
-			this.cb1day.TabIndex = 23;
-			this.cb1day.Text = "Last one day";
-			this.cb1day.UseVisualStyleBackColor = true;
-			this.cb1day.CheckedChanged += new System.EventHandler(this.cb1day_CheckedChanged);
 			// 
 			// BtnEnter
 			// 
@@ -513,56 +558,12 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
-			// lblOr
-			// 
-			this.lblOr.AutoSize = true;
-			this.lblOr.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblOr.Location = new System.Drawing.Point(153, 129);
-			this.lblOr.Name = "lblOr";
-			this.lblOr.Size = new System.Drawing.Size(38, 26);
-			this.lblOr.TabIndex = 25;
-			this.lblOr.Text = "Or";
-			this.lblOr.Click += new System.EventHandler(this.lblOr_Click);
-			// 
-			// lblAuth
-			// 
-			this.lblAuth.AutoSize = true;
-			this.lblAuth.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblAuth.Location = new System.Drawing.Point(100, 16);
-			this.lblAuth.Name = "lblAuth";
-			this.lblAuth.Size = new System.Drawing.Size(183, 26);
-			this.lblAuth.TabIndex = 26;
-			this.lblAuth.Text = "Authenticate via";
-			this.lblAuth.Click += new System.EventHandler(this.lblAuthFace_Click);
-			// 
-			// btnAuthFaceId
-			// 
-			this.btnAuthFaceId.BackColor = System.Drawing.Color.SlateGray;
-			this.btnAuthFaceId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAuthFaceId.Image = ((System.Drawing.Image)(resources.GetObject("btnAuthFaceId.Image")));
-			this.btnAuthFaceId.Location = new System.Drawing.Point(105, 158);
-			this.btnAuthFaceId.Name = "btnAuthFaceId";
-			this.btnAuthFaceId.Size = new System.Drawing.Size(143, 135);
-			this.btnAuthFaceId.TabIndex = 28;
-			this.btnAuthFaceId.UseVisualStyleBackColor = false;
-			this.btnAuthFaceId.Click += new System.EventHandler(this.btnAuthFaceId_Click);
-			// 
-			// picCapture
-			// 
-			this.picCapture.Enabled = false;
-			this.picCapture.Location = new System.Drawing.Point(187, 31);
-			this.picCapture.Name = "picCapture";
-			this.picCapture.Size = new System.Drawing.Size(191, 295);
-			this.picCapture.TabIndex = 29;
-			this.picCapture.TabStop = false;
-			this.picCapture.Visible = false;
-			// 
 			// picDetected
 			// 
 			this.picDetected.Enabled = false;
-			this.picDetected.Location = new System.Drawing.Point(41, 395);
+			this.picDetected.Location = new System.Drawing.Point(0, 0);
 			this.picDetected.Name = "picDetected";
-			this.picDetected.Size = new System.Drawing.Size(627, 425);
+			this.picDetected.Size = new System.Drawing.Size(191, 295);
 			this.picDetected.TabIndex = 30;
 			this.picDetected.TabStop = false;
 			this.picDetected.Visible = false;
@@ -573,8 +574,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImage = global::AutomatedTellerMachine.Properties.Resources._512x620;
-			this.ClientSize = new System.Drawing.Size(928, 850);
-			this.Controls.Add(this.picDetected);
+			this.ClientSize = new System.Drawing.Size(515, 622);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.BtnBalance);

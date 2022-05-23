@@ -763,6 +763,7 @@ namespace AutomatedTellerMachine
 			lblText.Location = new Point(80, 64);
 			lblText.Text = "Please Write New Pin";
 			lblText.Visible = true;
+			lblAuth.Visible = false;
 
 		}
 
@@ -788,6 +789,10 @@ namespace AutomatedTellerMachine
 
 			facesDetectionEnabled = true;
 
+			picCapture.Enabled = true;
+			picCapture.Visible = true;
+			picDetected.Enabled = true;
+			picDetected.Visible = true;
 			//Dispose of Capture if it was created before
 			if (videoCapture != null) videoCapture.Dispose();
 			videoCapture = new Capture();
@@ -805,7 +810,7 @@ namespace AutomatedTellerMachine
 		private Image<Bgr, Byte> currentFrame = null;
 		Mat frame = new Mat();
 		private bool facesDetectionEnabled = false;
-		CascadeClassifier faceCasacdeClassifier = new CascadeClassifier(@"C:\Users\C1\Downloads\New folder (2)\haarcascade_frontalface_alt.xml");
+		CascadeClassifier faceCasacdeClassifier = new CascadeClassifier(@"C:\Users\Gev\Downloads\New folder\haarcascade_frontalface_alt.xml");
 		Image<Bgr, Byte> faceResult = null;
 		List<Image<Gray, Byte>> TrainedFaces = new List<Image<Gray, byte>>();
 		List<int> PersonsLabes = new List<int>();
