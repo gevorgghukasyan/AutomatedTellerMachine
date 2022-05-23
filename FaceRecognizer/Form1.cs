@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace FaceRecognizer
 {
 	public partial class Form1 : Form
@@ -241,9 +242,9 @@ namespace FaceRecognizer
 			EnableSaveImage = true;
 		}
 
-		private void btnDetectFaces_Click_1(object sender, EventArgs e)
+		private void picCapture_Click(object sender, EventArgs e)
 		{
-			facesDetectionEnabled = true;
+
 		}
 	}
 }

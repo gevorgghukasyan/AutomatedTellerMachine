@@ -47,6 +47,7 @@
 			this.picCapture.Size = new System.Drawing.Size(627, 425);
 			this.picCapture.TabIndex = 0;
 			this.picCapture.TabStop = false;
+			this.picCapture.Click += new System.EventHandler(this.picCapture_Click);
 			// 
 			// btnCapture
 			// 
