@@ -4,20 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
-
+using Common.Entities;
 
 namespace AutomatedTellerMachine
 {
-   public class CashEventArgs:EventArgs
-    {
-        public CashEventArgs(Card card, decimal Money)
-        {
-            this.card = card;
-            this.Money = Money;
-        }
+	public class CashEventArgs : EventArgs
+	{
+		public CashEventArgs(Card card, decimal money)
+		{
+			Card = card;
+			Money = money;
+		}
 
-
-        public Card card { get; set; }
-        public decimal Money { get; set; }
-    }
+		public Card Card { get; set; }
+		public decimal Money { get; set; }
+	}
 }

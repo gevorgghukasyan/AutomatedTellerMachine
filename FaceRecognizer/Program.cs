@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Common;
-using DAL;
 
-namespace Bank
+namespace FaceRecognizer
 {
-	static class Program
+	internal static class Program
 	{
 		/// <summary>
 		/// The main entry point for the application.
@@ -18,10 +16,7 @@ namespace Bank
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			var form = new Bank();
-			var menager = new Core.CardManager(new Repository(), new UserRepository());
-			var presenter = new BuisnessLogic(form, new Repository(), new UserRepository(), new NotificationService(), menager);
-			Application.Run(form);
+			Application.Run(new Form1());
 		}
 	}
 }

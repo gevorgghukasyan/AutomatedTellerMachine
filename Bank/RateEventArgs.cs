@@ -2,13 +2,13 @@
 
 namespace Bank
 {
-    public class RateEventArgs:EventArgs
-    {
-       public Rate rate;
+	public class RateEventArgs : EventArgs
+	{
+		public Rate rate;
 
-        public RateEventArgs(Rate rate)
-        {
-            this.rate = rate;
-        }
-    }
+		public RateEventArgs(Rate rate)
+		{
+			this.rate = rate;
+		}
+	}
 }

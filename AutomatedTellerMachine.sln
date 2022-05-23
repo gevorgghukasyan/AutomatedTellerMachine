@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29324.140
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTellerMachine", "AutomatedTellerMachine\AutomatedTellerMachine.csproj", "{9A81EDF3-A07E-4C3E-BE80-B14293730412}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{4124FFC4-E15C-4726-B0CD-9CD6CA38E17A}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{9784DA87-329A-4366-964C-DD471DA99E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDetector", "FaceDetector\FaceDetector.csproj", "{AF0C6D83-5AAB-486C-ABD0-A6DAA800601B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer", "FaceRecognizer\FaceRecognizer.csproj", "{7CB1D974-01C0-4035-AF44-BB96F5F996B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,14 @@ Global
 		{4124FFC4-E15C-4726-B0CD-9CD6CA38E17A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9784DA87-329A-4366-964C-DD471DA99E81}.Debug|Any CPU.ActiveCfg = Debug
 		{9784DA87-329A-4366-964C-DD471DA99E81}.Release|Any CPU.ActiveCfg = Release
+		{AF0C6D83-5AAB-486C-ABD0-A6DAA800601B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0C6D83-5AAB-486C-ABD0-A6DAA800601B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0C6D83-5AAB-486C-ABD0-A6DAA800601B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0C6D83-5AAB-486C-ABD0-A6DAA800601B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB1D974-01C0-4035-AF44-BB96F5F996B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB1D974-01C0-4035-AF44-BB96F5F996B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB1D974-01C0-4035-AF44-BB96F5F996B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB1D974-01C0-4035-AF44-BB96F5F996B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
