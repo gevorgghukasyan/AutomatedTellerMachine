@@ -84,14 +84,16 @@
 			// groupBoxDesktop
 			// 
 			this.groupBoxDesktop.BackColor = System.Drawing.Color.Navy;
+			this.groupBoxDesktop.Controls.Add(this.picDetected);
 			this.groupBoxDesktop.Controls.Add(this.btnAuthFaceId);
 			this.groupBoxDesktop.Controls.Add(this.lblAuth);
 			this.groupBoxDesktop.Controls.Add(this.lblTransfer);
+			this.groupBoxDesktop.Controls.Add(this.picCapture);
 			this.groupBoxDesktop.Controls.Add(this.lblErrorText);
+			this.groupBoxDesktop.Controls.Add(this.groupBoxTransaction);
 			this.groupBoxDesktop.Controls.Add(this.lblOr);
 			this.groupBoxDesktop.Controls.Add(this.lblTransaction);
 			this.groupBoxDesktop.Controls.Add(this.lblCashIn);
-			this.groupBoxDesktop.Controls.Add(this.groupBoxTransaction);
 			this.groupBoxDesktop.Controls.Add(this.lblBalance);
 			this.groupBoxDesktop.Controls.Add(this.lblCardBlock);
 			this.groupBoxDesktop.Controls.Add(this.lblChangePin);

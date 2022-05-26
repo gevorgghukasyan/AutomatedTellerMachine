@@ -57,6 +57,7 @@
 			this.btnCapture.TabIndex = 1;
 			this.btnCapture.Text = "1. Capture";
 			this.btnCapture.UseVisualStyleBackColor = true;
+			this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click_1);
 			// 
 			// btnDetectFaces
 			// 
@@ -66,6 +67,7 @@
 			this.btnDetectFaces.TabIndex = 2;
 			this.btnDetectFaces.Text = "2. Detect Faces";
 			this.btnDetectFaces.UseVisualStyleBackColor = true;
+			this.btnDetectFaces.Click += new System.EventHandler(this.btnDetectFaces_Click_1);
 			// 
 			// txtPersonName
 			// 
@@ -82,6 +84,7 @@
 			this.btnSave.TabIndex = 4;
 			this.btnSave.Text = "Add Person";
 			this.btnSave.UseVisualStyleBackColor = true;
+			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
 			// btnTrain
 			// 
@@ -91,6 +94,7 @@
 			this.btnTrain.TabIndex = 5;
 			this.btnTrain.Text = "Train Images";
 			this.btnTrain.UseVisualStyleBackColor = true;
+			this.btnTrain.Click += new System.EventHandler(this.btnTrain_Click_1);
 			// 
 			// btnRecogize
 			// 

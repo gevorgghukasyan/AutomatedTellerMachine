@@ -26,7 +26,7 @@ namespace FaceRecognizer
 		private Image<Bgr, Byte> currentFrame = null;
 		Mat frame = new Mat();
 		private bool facesDetectionEnabled = false;
-		CascadeClassifier faceCasacdeClassifier = new CascadeClassifier(@"C:\Users\C1\Downloads\New folder (2)\haarcascade_frontalface_alt.xml");
+		CascadeClassifier faceCasacdeClassifier = new CascadeClassifier(@"C:\Users\Gev\Downloads\New folder\haarcascade_frontalface_alt.xml");
 		Image<Bgr, Byte> faceResult = null;
 		List<Image<Gray, Byte>> TrainedFaces = new List<Image<Gray, byte>>();
 		List<int> PersonsLabes = new List<int>();
@@ -218,6 +218,28 @@ namespace FaceRecognizer
 				MessageBox.Show("Error in Train Images: " + ex.Message);
 				return false;
 			}
+		}
+
+		private void btnCapture_Click_1(object sender, EventArgs e)
+		{
+			//Dispose of Capture if it was created before
+			if (videoCapture != null) videoCapture.Dispose();
+			videoCapture = new Capture();
+			//videoCapture.ImageGrabbed += ProcessFrame;
+			Application.Idle += ProcessFrame;
+			// videoCapture.Start();
+		}
+
+		private void btnTrain_Click_1(object sender, EventArgs e)
+		{
+			TrainImagesFromDir();
+			//MessageBox.Show("end");
+		}
+
+		private void btnSave_Click(object sender, EventArgs e)
+		{
+			btnSave.Enabled = false;
+			EnableSaveImage = true;
 		}
 
 		private void picCapture_Click(object sender, EventArgs e)
