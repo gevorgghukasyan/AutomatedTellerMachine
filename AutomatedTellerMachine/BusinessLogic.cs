@@ -83,7 +83,6 @@ namespace AutomatedTellerMachine
 		List<string> faildCardsList = new List<string>();
 		private LoginResultType IsCardAuthorizationTrue(Card GetCard)
 		{
-
 			Card card = repository.GetById(GetCard.AccountNumber);
 			if (card != null && card.AccountNumber.Length == 16)
 			{

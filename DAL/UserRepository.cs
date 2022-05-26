@@ -7,7 +7,7 @@ namespace DAL
 {
 	public class UserRepository : IUserRepository
 	{
-		private string _connectionString = @"Data Source = DESKTOP-44N2VNP; Initial Catalog=ATMDB; Integrated Security = True";
+		private string _connectionString = @"Data Source = DESKTOP-EBTTKD9\MSSQLSERVER21; Initial Catalog=ATMDB; Integrated Security = True";
 
 		public void AddUser(User user)
 		{

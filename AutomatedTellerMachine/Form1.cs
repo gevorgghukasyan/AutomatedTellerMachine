@@ -30,6 +30,7 @@ namespace AutomatedTellerMachine
 		Balance,
 		Tax,
 		Transaction,
+		Transfer,
 		ChangePin
 	}
 
@@ -40,13 +41,14 @@ namespace AutomatedTellerMachine
 			InitializeComponent();
 		}
 
-		private string _connectionString = @"Data Source = DESKTOP-44N2VNP; Initial Catalog=ATMDB; Integrated Security = True";
+		private string _connectionString = @"Data Source = DESKTOP-EBTTKD9\MSSQLSERVER21; Initial Catalog=ATMDB; Integrated Security = True";
 
 		private ATMOperations currentOperation = ATMOperations.CardID;
 
 		private string AccountNumber;
 		private string Password;
 		Card card = new Card();
+		private static int _enterBtnClickCount = 0;
 		private async void BtnEnter_Click(object sender, EventArgs e)
 		{
 			switch (currentOperation)
@@ -64,6 +66,7 @@ namespace AutomatedTellerMachine
 					Password = TxtInputData.Text;
 					card.Password = Password;
 					OnSubmitIdPass?.Invoke(this, card);
+					TxtInputData.UseSystemPasswordChar = false;
 					break;
 				case ATMOperations.CashIn:
 					CashEventArgs cashIn = new CashEventArgs(card, decimal.Parse(TxtInputData.Text));
@@ -139,11 +142,75 @@ namespace AutomatedTellerMachine
 						lblText.Visible = false;
 					}
 					break;
+				case ATMOperations.Transfer:
+					Transfer();
+					break;
 				default:
 					break;
 			}
-
 		}
+
+		private void Transfer()
+		{
+			string money = "";
+			string accountNumber = "";
+
+			if (_enterBtnClickCount == 0)
+			{
+				 accountNumber = TxtInputData.Text;
+				recipient = GetById(accountNumber);
+
+				if (string.IsNullOrEmpty(accountNumber) || recipient == null)
+				{
+					lblText.Text = "Customer not found, please try again";
+					Transfer();
+					return;
+				}
+
+				transmitter = GetById(AccountNumber);
+
+				var user = GetByUserId(recipient.UserId);
+
+				DialogResult dialogResult = MessageBox.Show($"Are you sure you want to transfer to\n{user.FirstName} {user.LastName}?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
+				if (dialogResult == DialogResult.Yes)
+				{
+					TxtInputData.Text = "";
+					lblText.Text = "Input money size";
+
+					_enterBtnClickCount++;
+					return;
+				}
+			}
+			if (_enterBtnClickCount == 1)
+			{
+				CashEventArgs cash = new CashEventArgs(card, decimal.Parse(money));
+				OnCashOut?.Invoke(this, cash);
+
+				CashEventArgs cashIn = new CashEventArgs(GetById(accountNumber), decimal.Parse(money));
+
+				OnCashIn?.Invoke(this, cashIn);
+				lblText.Location = new Point(25, 50);
+				lblText.Text = "Your transaction is complete";
+				Task.Delay(5000);
+				SuccessLogin();
+			}
+
+
+			//Thread.Sleep(5000);
+			//lblText.Visible = false;
+
+			//lblCardBlock.Visible = true;
+			//lblBalance.Visible = true;
+			//lblCashIn.Visible = true;
+			//lblCashOut.Visible = true;
+			//lblChangePin.Visible = true;
+			//lblTax.Visible = true;
+			//lblTransaction.Visible = true;
+			//lblTransfer.Visible = true;
+		}
+
 		Card transmitter = new Card();
 		Card recipient = new Card();
 		public void UpdateCard1(Card card)
@@ -236,7 +303,9 @@ namespace AutomatedTellerMachine
 			BtnChangePin.Enabled = true;
 			lblTransfer.Visible = true;
 			lblCardBlock.Visible = true;
-
+			lblAuth.Visible = false;
+			btnAuthFaceId.Visible = false;
+			lblOr.Visible = false;
 		}
 
 		public async void FailLogin(LoginResultType message)
@@ -415,6 +484,10 @@ namespace AutomatedTellerMachine
 			lblCashIn.Visible = false;
 			lblCashOut.Visible = false;
 			lblTax.Visible = false;
+			lblCardBlock.Visible = false;
+			lblChangePin.Visible = false;
+			lblTransaction.Visible = false;
+			lblTransfer.Visible = false;
 
 
 			BtnCashOut.Enabled = false;
@@ -447,6 +520,11 @@ namespace AutomatedTellerMachine
 			lblText.Visible = true;
 			lblText.Text = "Input money size";
 			currentOperation = ATMOperations.CashOut;
+			lblCardBlock.Visible = false;
+			lblTransfer.Visible = false;
+			lblChangePin.Visible = false;
+			lblTransaction.Visible = false;
+			lblCardBlock.Visible = false;
 
 		}
 
@@ -622,7 +700,6 @@ namespace AutomatedTellerMachine
 			}
 		}
 
-
 		public Card GetById(string accountNumber)
 		{
 			using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -654,7 +731,6 @@ namespace AutomatedTellerMachine
 			}
 		}
 
-
 		private void button2_Click(object sender, EventArgs e)
 		{
 			lblCardBlock.Visible = false;
@@ -667,35 +743,16 @@ namespace AutomatedTellerMachine
 			lblTransaction.Visible = false;
 			lblTransfer.Visible = false;
 
+			lblText.Visible = true;
+			lblAuth.Visible = false;
+			lblOr.Visible = false;
+			btnAuthFaceId.Visible = false;
+			lblText.Location = new Point(12, 37);
 			lblText.Text = "Write the recipient's account number";
+			TxtInputData.Text = "";
 			TxtInputData.Visible = true;
 
-			string accountNumber = TxtInputData.Text;
-
-			transmitter = GetById(AccountNumber);
-			recipient = GetById(accountNumber);
-
-			var user = GetByUserId(recipient.UserId);
-
-			DialogResult dialogResult = MessageBox.Show($"Are you sure you want to transfer to\n{user.FirstName} {user.LastName}?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-			if (dialogResult == DialogResult.Yes)
-			{
-				TxtInputData.Text = "";
-				lblText.Text = "Input money size";
-			}
-
-			Thread.Sleep(5000);
-			lblText.Visible = false;
-
-			lblCardBlock.Visible = true;
-			lblBalance.Visible = true;
-			lblCashIn.Visible = true;
-			lblCashOut.Visible = true;
-			lblChangePin.Visible = true;
-			lblTax.Visible = true;
-			lblTransaction.Visible = true;
-			lblTransfer.Visible = true;
+			currentOperation = ATMOperations.Transfer;
 		}
 
 		public User GetByUserId(int userId)
@@ -763,7 +820,7 @@ namespace AutomatedTellerMachine
 			lblText.Location = new Point(80, 64);
 			lblText.Text = "Please Write New Pin";
 			lblText.Visible = true;
-
+			lblAuth.Visible = false;
 		}
 
 		private void lblAuthFace_Click(object sender, EventArgs e)
